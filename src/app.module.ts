@@ -5,6 +5,8 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { UsersModule } from "./users/users.module";
 import { User } from "./users/entities/user.entity";
 import { StocksModule } from "./stocks/stocks.module";
+import { TasksModule } from "./tasks/tasks.module";
+import { ScheduleModule } from "@nestjs/schedule";
 
 @Module({
   imports: [
@@ -16,6 +18,8 @@ import { StocksModule } from "./stocks/stocks.module";
     }),
     UsersModule,
     StocksModule,
+    ScheduleModule.forRoot(),
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
