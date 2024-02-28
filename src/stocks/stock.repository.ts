@@ -2,12 +2,13 @@ import { Repository } from "typeorm";
 import { Stock } from "./entities/stock.entity";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { AssetType } from "src/types/assets.types";
 
 export interface IStockRepository {
   save(stocks: Stock[]): Promise<void>;
   findAll(): Promise<Stock[]>;
   findByTicker(ticker: string): Promise<Stock>;
-  findByType(type: string): Promise<Stock[]>;
+  findByType(type: AssetType): Promise<Stock[]>;
   findBySector(sector: string): Promise<Stock[]>;
 }
 
@@ -32,7 +33,7 @@ export class StockTypeORMRepository implements IStockRepository {
     });
   }
 
-  findByType(type: string): Promise<Stock[]> {
+  findByType(type: AssetType): Promise<Stock[]> {
     return this.typeOrmRepo.find({
       where: { type },
     });

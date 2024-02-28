@@ -3,7 +3,7 @@ import { Stock } from "./entities/stock.entity";
 import { config } from "dotenv";
 import { Inject } from "@nestjs/common";
 import { DetailedStock } from "./entities/detailed-stock.entity";
-import { AssetType, AssetTypeForBrapiFetch } from "src/types/brapi.types";
+import { AssetType, AssetTypeForBrapiFetch } from "src/types/assets.types";
 
 config();
 

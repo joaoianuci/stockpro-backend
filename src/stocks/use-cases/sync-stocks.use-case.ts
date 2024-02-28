@@ -1,4 +1,4 @@
-import { AssetType } from "src/types/brapi.types";
+import { AssetType } from "src/types/assets.types";
 import { BrapiService } from "../brapi.service";
 import { IStockRepository } from "../stock.repository";
 import { Inject } from "@nestjs/common";

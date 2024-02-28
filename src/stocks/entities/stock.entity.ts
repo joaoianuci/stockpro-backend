@@ -1,3 +1,4 @@
+import { AssetType } from "src/types/assets.types";
 import { Column, Entity, PrimaryColumn } from "typeorm";
 
 @Entity()
@@ -34,10 +35,10 @@ export class Stock {
   }
 
   isStock() {
-    return this.type === "stock";
+    return this.type === AssetType.STOCK;
   }
 
   isBdr() {
-    return this.type === "bdr";
+    return this.type === AssetType.BDR;
   }
 }
