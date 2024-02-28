@@ -4,28 +4,28 @@ import { Column, Entity, PrimaryColumn } from "typeorm";
 export class Stock {
   @PrimaryColumn()
   stock: string;
-  
+
   @Column()
   name: string;
-  
+
   @Column()
   close: number;
-  
+
   @Column()
   change: number;
-  
+
   @Column()
   volume: number;
-  
+
   @Column()
   market_cap: number;
-  
+
   @Column()
   logo: string;
-  
+
   @Column()
   sector: string;
-  
+
   @Column()
   type: string;
 

@@ -6,6 +6,8 @@ import { CacheModule } from "@nestjs/cache-manager";
 import { Stock } from "./entities/stock.entity";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { StockTypeORMRepository } from "./stock.repository";
+import { ShowDetailedStockUseCase } from "./use-cases/show-detailed-stock.use-case";
+import { ListStocksUseCase } from "./use-cases/list-stocks.use-case";
 
 // add AuthMiddleware to the providers array
 @Module({
@@ -14,6 +16,8 @@ import { StockTypeORMRepository } from "./stock.repository";
   providers: [
     BrapiService,
     StockTypeORMRepository,
+    ShowDetailedStockUseCase,
+    ListStocksUseCase,
     {
       provide: "IStockRepository",
       useExisting: StockTypeORMRepository,
