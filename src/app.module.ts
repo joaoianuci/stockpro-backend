@@ -7,6 +7,7 @@ import { User } from "./users/entities/user.entity";
 import { StocksModule } from "./stocks/stocks.module";
 import { TasksModule } from "./tasks/tasks.module";
 import { ScheduleModule } from "@nestjs/schedule";
+import { Stock } from "./stocks/entities/stock.entity";
 
 @Module({
   imports: [
@@ -14,7 +15,7 @@ import { ScheduleModule } from "@nestjs/schedule";
       type: "sqlite",
       database: "./src/database/sqlite.db",
       synchronize: true,
-      entities: [User],
+      entities: [User, Stock],
     }),
     UsersModule,
     StocksModule,
