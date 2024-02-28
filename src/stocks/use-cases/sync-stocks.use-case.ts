@@ -1,3 +1,4 @@
+import { AssetType } from "src/types/brapi.types";
 import { BrapiService } from "../brapi.service";
 import { IStockRepository } from "../stock.repository";
 import { Inject } from "@nestjs/common";
@@ -12,7 +13,7 @@ export class SyncStocksUseCase {
   constructor() {}
 
   async execute(): Promise<void> {
-    const stocksFromApi = await this.brapiService.listStocks();
+    const stocksFromApi = await this.brapiService.listAssets(AssetType.STOCK);
     await this.stockRepository.save(stocksFromApi);
   }
 }
