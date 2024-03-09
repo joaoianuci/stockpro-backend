@@ -1,4 +1,4 @@
-GET http://localhost:3000/api/stocks
+GET http://localhost:3333/api/stocks
 
 ##
-GET http://localhost:3000/api/stocks/BBDC3
+GET http://localhost:3333/api/stocks/BBDC3
