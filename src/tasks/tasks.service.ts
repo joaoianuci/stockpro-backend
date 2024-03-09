@@ -10,6 +10,17 @@ export class TasksService {
 
   constructor() {}
 
+  // execute this method one time and then every hour
+  async onApplicationBootstrap() {
+    try {
+      this.logger.debug("Synchronizing stocks...");
+      await this.syncStocksUseCase.execute();
+      this.logger.debug("Stocks synchronized!");
+    } catch (error) {
+      this.logger.error("Error while synchronizing stocks", error);
+    }
+  }
+
   @Cron(CronExpression.EVERY_HOUR)
   async handleCron() {
     try {
