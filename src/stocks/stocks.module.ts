@@ -9,9 +9,11 @@ import { StockTypeORMRepository } from "./stock.repository";
 import { ShowDetailedStockUseCase } from "./use-cases/show-detailed-stock.use-case";
 import { ListStocksUseCase } from "./use-cases/list-stocks.use-case";
 
-// add AuthMiddleware to the providers array
 @Module({
-  imports: [CacheModule.register(), TypeOrmModule.forFeature([Stock])],
+  imports: [
+    CacheModule.register(),
+    TypeOrmModule.forFeature([Stock]),
+  ],
   controllers: [StocksController],
   providers: [
     BrapiService,

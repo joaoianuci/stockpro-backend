@@ -18,7 +18,9 @@ export class Stock {
   @Column()
   volume: number;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   market_cap: number;
 
   @Column()

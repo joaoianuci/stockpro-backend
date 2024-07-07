@@ -8,14 +8,33 @@ import { BrapiService } from "src/stocks/brapi.service";
 import { StockTypeORMRepository } from "src/stocks/stock.repository";
 import { CacheModule } from "@nestjs/cache-manager";
 import { SyncStocksUseCase } from "src/stocks/use-cases/sync-stocks.use-case";
+import { ClientsModule, Transport } from "@nestjs/microservices";
+import { TasksController } from "./tasks.controller";
 
 config();
 
 const isMasterInstance = process.env.INSTANCE_ID === "master";
 const taskProvider = isMasterInstance ? [TasksService] : [];
+const rabbitMQUrl = process.env.RABBITMQ_URL || "amqp://localhost:5672";
 
 @Module({
-  imports: [CacheModule.register(), TypeOrmModule.forFeature([Stock])],
+  imports: [
+    CacheModule.register(),
+    TypeOrmModule.forFeature([Stock]),
+    ClientsModule.register([
+      {
+        name: "STOCKS_SERVICE",
+        transport: Transport.RMQ,
+        options: {
+          urls: [rabbitMQUrl],
+          queue: "stocks",
+          queueOptions: {
+            durable: true,
+          },
+        },
+      },
+    ]),
+  ],
   providers: [
     ...taskProvider,
     BrapiService,
@@ -26,5 +45,6 @@ const taskProvider = isMasterInstance ? [TasksService] : [];
       useExisting: StockTypeORMRepository,
     },
   ],
+  controllers: [TasksController],
 })
 export class TasksModule {}
