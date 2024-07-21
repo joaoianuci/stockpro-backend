@@ -1,3 +1,5 @@
+import { Stock } from "./stock.entity";
+
 export interface HistoricalDataPrice {
   date: number;
   open: number;
@@ -8,7 +10,7 @@ export interface HistoricalDataPrice {
   adjustedClose: number;
 }
 
-export class DetailedStock {
+export class DetailedStock extends Stock {
   currency: string;
   twoHundredDayAverage: number;
   twoHundredDayAverageChange: number;
@@ -43,14 +45,14 @@ export class DetailedStock {
   validIntervals: string[];
   priceEarnings: number;
   earningsPerShare: number;
-  logourl: string;
 
   constructor(partial: Partial<DetailedStock>) {
+    super(partial);
     Object.assign(this, partial);
   }
 
   getLogo() {
-    return this.logourl;
+    return this.logo;
   }
 
   getDividendYield() {
@@ -70,5 +72,10 @@ export class DetailedStock {
       shortName: this.shortName,
       longName: this.longName,
     };
+  }
+
+  getMaxPrice() {
+    // considering a minimum earning per share of 6%, we can calculate the maximum price that we can pay for the stock
+    return this.earningsPerShare / 0.06;
   }
 }

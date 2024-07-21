@@ -1,0 +1,136 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title Detailed Stock Analysis
+        style.
+            * {
+                all: unset;
+            }
+
+            body {
+                position: relative;
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+            }
+
+            header {
+                background: #333;
+                color: #fff;
+                padding: 1rem 0;
+                text-align: center;
+            }
+
+            header h1 {
+                margin: 0;
+                font-size: 2rem;
+            }
+
+            header p {
+                margin: 0;
+                font-size: 1rem;
+            }
+
+            section {
+                margin: 2rem auto;
+                padding: 1rem;
+                background: #fff;
+                border-radius: 5px;
+                max-width: 800px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h2 {
+                border-bottom: 2px solid #333;
+                padding-bottom: 0.5rem;
+                margin-bottom: 1rem;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            ul li {
+                margin: 0.5rem 0;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 1rem;
+            }
+
+            table th, table td {
+                padding: 0.5rem;
+                border: 1px solid #ddd;
+                text-align: left;
+            }
+
+            table th {
+                background: #333;
+                color: #fff;
+            }
+
+            #chart {
+                margin: 2rem 0;
+                height: 400px;
+            }
+
+            footer {
+                text-align: center;
+                padding: 1rem 0;
+                background: #333;
+                color: #fff;
+                position: absolute;
+                bottom: -291px;
+                width: 100%;
+            }
+    body
+        header
+            h1.
+                Detailed Stock Analysis: #{shortName} #[br] (#{symbol})
+            p Last updated: #{lastUpdated}
+            img(src=logourl alt=symbol)
+
+        section.stock-info
+            h2 Basic Information
+            ul
+                li
+                    strong Company Name:
+                    | #{longName}
+                li
+                    strong Market Cap:
+                    | #{market_cap}
+                li
+                    strong Type:
+                    | #{type}
+                li
+                    strong Sector:
+                    | #{sector}
+
+        section.key-metrics
+            h2 Key Metrics
+            ul
+                li
+                    strong P/E Ratio:
+                    | #{peRatio}%
+                li
+                    strong EPS:
+                    | #{earningsPerShare} #{currency}
+                li
+                    strong Dividend Yield:
+                    | #{priceEarnings}%
+                li
+                    strong 52-Week High:
+                    | #{fiftyTwoWeekHigh} #{currency}
+                li
+                    strong 52-Week Low:
+                    | #{fiftyTwoWeekLow} #{currency}
+
+        footer
+            p &copy; #{new Date().getFullYear()} StockPro Analysis
