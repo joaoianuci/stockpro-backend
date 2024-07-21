@@ -45,7 +45,7 @@ export class BrapiService {
       return cachedDetailedStock as DetailedStock;
     }
 
-    const response = await fetch(`${this.baseEnpoint}/quote/${ticker}?token=${this.apiKey}`);
+    const response = await fetch(`${this.baseEnpoint}/quote/${ticker}?token=${this.apiKey}&fundamental=true`);
     const data = await response.json();
     const result = data.results[0];
     const detailedStock = new DetailedStock(result);
