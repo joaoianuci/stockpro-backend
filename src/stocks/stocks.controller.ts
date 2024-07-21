@@ -1,7 +1,6 @@
 import { Controller, Get, Inject, Param } from "@nestjs/common";
 import { ShowDetailedStockUseCase } from "./use-cases/show-detailed-stock.use-case";
 import { ListStocksUseCase } from "./use-cases/list-stocks.use-case";
-import { EventPattern, Payload } from "@nestjs/microservices";
 
 @Controller("stocks")
 export class StocksController {
