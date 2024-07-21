@@ -10,6 +10,8 @@ import { CacheModule } from "@nestjs/cache-manager";
 import { SyncStocksUseCase } from "src/stocks/use-cases/sync-stocks.use-case";
 import { ClientsModule, Transport } from "@nestjs/microservices";
 import { TasksController } from "./tasks.controller";
+import { SubscribeSyncStocksMessage } from "./messages/sub/subscribe-sync-stocks.message";
+import { PublishSyncStocksMessage } from "./messages/pub/publish-sync-stocks.message";
 
 config();
 
@@ -40,11 +42,12 @@ const rabbitMQUrl = process.env.RABBITMQ_URL || "amqp://localhost:5672";
     BrapiService,
     StockTypeORMRepository,
     SyncStocksUseCase,
+    PublishSyncStocksMessage,
     {
       provide: "IStockRepository",
       useExisting: StockTypeORMRepository,
     },
   ],
-  controllers: [TasksController],
+  controllers: [SubscribeSyncStocksMessage, TasksController],
 })
 export class TasksModule {}
