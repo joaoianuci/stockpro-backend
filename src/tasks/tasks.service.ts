@@ -18,7 +18,7 @@ export class TasksService {
   }
 
   @Cron(CronExpression.EVERY_HOUR)
-  async handleCron() {
+  async syncStocksPubCron() {
     try {
       await this.publishSyncStocksMessage.publish();
     } catch (error) {

@@ -16,7 +16,8 @@ export class GenerateStockPDFUseCase {
 
       const formattedStock = this.resetNullishValues(stock);
       const filename = `${formattedStock.symbol}.pdf`;
-      const marketCapInBillions = (formattedStock.marketCap / 1_000_000_000).toFixed(2) + "bi";
+      const marketValue = formattedStock.marketCap || formattedStock.market_cap;
+      const marketCapInBillions = (marketValue / 1_000_000_000).toFixed(2) + "bi";
       this.pdfService
         .toFile("", `./src/static/documents/stocks/${filename}`, {
           locals: {

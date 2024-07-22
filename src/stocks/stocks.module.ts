@@ -13,6 +13,7 @@ import { GenerateStockPDFUseCase } from "./use-cases/generate-detailed-stock-pdf
 import { ClientsModule, Transport } from "@nestjs/microservices";
 import { PublishGeneratePdfMessage } from "./messages/pub/publish-generate-pdf.message";
 import { SubscribeGeneratePdfMessage } from "./messages/sub/subscribe-generate-pdf.message";
+import { SyncStocksUseCase } from "./use-cases/sync-stocks.use-case";
 
 const rabbitMQUrl = process.env.RABBITMQ_URL || "amqp://localhost:5672";
 
@@ -50,6 +51,19 @@ const rabbitMQUrl = process.env.RABBITMQ_URL || "amqp://localhost:5672";
     ListStocksUseCase,
     GenerateStockPDFUseCase,
     PublishGeneratePdfMessage,
+    SyncStocksUseCase,
+    {
+      provide: "IStockRepository",
+      useExisting: StockTypeORMRepository,
+    },
+  ],
+  exports: [
+    GenerateStockPDFUseCase,
+    ShowDetailedStockUseCase,
+    ListStocksUseCase,
+    SyncStocksUseCase,
+    StockTypeORMRepository,
+    BrapiService,
     {
       provide: "IStockRepository",
       useExisting: StockTypeORMRepository,
