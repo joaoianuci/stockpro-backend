@@ -23,7 +23,7 @@ export class GenerateStockPDFUseCase {
           locals: {
             ...formattedStock,
             lastUpdated: new Date().toLocaleDateString(),
-            peRatio: formattedStock.priceEarnings?.toFixed(2) ?? "N/A",
+            price: formattedStock.regularMarketPrice?.toFixed(2) ?? "N/A",
             priceEarnings: formattedStock.priceEarnings?.toFixed(2) ?? "N/A",
             marketCap: marketCapInBillions,
             earningsPerShare: formattedStock.earningsPerShare.toFixed(2) ?? "N/A",
